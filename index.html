@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK Key Checker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .live {
+            color: green;
+        }
+        .dead {
+            color: red;
+        }
+        .unknown {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">SK Key Checker</h1>
+        
+        <form id="skForm" onsubmit="event.preventDefault(); checkKeys();">
+            <div class="mb-3">
+                <label for="skInput" class="form-label">Enter SK Keys</label>
+                <textarea class="form-control" id="skInput" rows="10" placeholder="Enter SK keys here, one per line"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Check Keys</button>
+        </form>
 
+        <div id="results" class="result mt-4">
+            <div class="box-title">
+                <h3 class="panel-title alert alert-primary font-monospace">Live - <span class="badge bg-success live-count">0</span></h3>
+            </div>
+            <div class="box-body">
+                <div class="box-content alert alert-success">
+                    <div class="panel-body live-results"></div>
+                </div>
+            </div>
+
+            <div class="box-title mt-4">
+                <h3 class="panel-title alert alert-primary font-monospace">Die - <span class="badge bg-danger die-count">0</span></h3>
+            </div>
+            <div class="box-body">
+                <div class="box-content alert alert-danger">
+                    <div class="panel-body dead-results"></div>
+                </div>
+            </div>
+            
+            <div class="box-title mt-4">
+                <h3 class="panel-title alert alert-primary font-monospace">Unknown - <span class="badge bg-warning unknown-count">0</span></h3>
+            </div>
+            <div class="box-body">
+                <div class="box-content alert alert-warning">
+                    <div class="panel-body unknown-results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

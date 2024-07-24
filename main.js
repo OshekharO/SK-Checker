@@ -22,9 +22,19 @@ async function checkKeys() {
 
     for (const skKey of keys) {
         try {
-            const response = await fetch(`https://sk-checker.live/api/sk.php?sk=${skKey}`);
+            const response = await fetch(`https://cors-bypasser-gilt.vercel.app/fetchdata?url=https://sk-checker.live/api/sk.php?sk=${skKey}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const text = await response.text();
-            
+
             if (text.includes('DEAD')) {
                 addResult(deadResults, text, 'dead');
                 dieCount.textContent = parseInt(dieCount.textContent) + 1;
@@ -35,7 +45,6 @@ async function checkKeys() {
                 addResult(unknownResults, text, 'unknown');
                 unknownCount.textContent = parseInt(unknownCount.textContent) + 1;
             }
-
         } catch (error) {
             console.error('Error:', error);
             addResult(unknownResults, `Error checking key: ${skKey}`, 'unknown');
